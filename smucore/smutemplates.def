@@ -1,0 +1,217 @@
+%-------------------------------------------------------------
+%  SMU Beamer Theme - Page Templates
+%  Author: qsang
+%  Version: 2.0.0, 2026/01/26
+%-------------------------------------------------------------
+
+% ================================================================================
+% Required Packages
+% ================================================================================
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+
+% ================================================================================
+% Reusable Header Drawing Macro
+% Draw SMU page header with logo and light blue background bar
+% Parameter: logo height
+% ================================================================================
+
+\newcommand{\smu@drawheader}[1]{%
+  \fill[smulightblue]
+    (current page.north west) -- 
+    (current page.north east) --
+    ([yshift=-#1]current page.north east) --
+    ([yshift=-#1]current page.north west) -- 
+    cycle;
+  
+  \node[anchor=north west, inner sep=0pt, outer sep=0pt]
+    at (current page.north west)
+    {\includegraphics[height=#1]{source/smu_header_large_left.png}};
+  
+  \fill[smuwhite]
+    ([xshift=3.9cm]current page.north west) -- 
+    ([xshift=3.9cm, yshift=-#1]current page.north west) --
+    ([xshift=4.6cm]current page.north west) --
+    cycle;
+  
+  \fill[white]
+    ([xshift=3.89cm]current page.north west) -- 
+    ([xshift=3.89cm, yshift=-#1]current page.north west) --
+    ([xshift=4.6cm, yshift=-#1]current page.north west) --
+    cycle;
+}
+
+% ================================================================================
+% Title Page Template
+% ================================================================================
+
+\setbeamertemplate{title page}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[smuwhite]
+      (current page.north west) -- 
+      (current page.north east) --
+      (current page.south east) --
+      (current page.south west) --
+      cycle;
+    
+    \smu@drawheader{2cm}
+  \end{tikzpicture}%
+  %
+  \begin{picture}(0,0)
+    \put(-25,-30){%
+      \begin{minipage}{\paperwidth}
+        \centering
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}\parbox{0.8\linewidth}{\centering\inserttitle}\par}%
+        \vspace{8pt}%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+        \vspace{10pt}%
+        {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
+        \vspace{5pt}%
+        {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}%
+        \vspace{1pt}%
+        {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
+      \end{minipage}%
+    }%
+  \end{picture}%
+}
+
+% ================================================================================
+% Frame Title Template
+% ================================================================================
+
+\setbeamertemplate{frametitle}{%
+  \ifnum\theframenumber=1\relax\else
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[smulightblue]
+        (current page.north west) -- 
+        (current page.north east) --
+        ([yshift=-0.8cm]current page.north east) --
+        ([yshift=-0.8cm]current page.north west) -- 
+        cycle;
+      
+      \fill[white]
+        (current page.north west) -- 
+        ([xshift=1.7cm]current page.north west) --
+        ([xshift=2.0cm, yshift=-0.8cm]current page.north west) --
+        ([yshift=-0.8cm]current page.north west) -- 
+        cycle;
+      
+      \node[anchor=north west, inner sep=0pt, outer sep=0pt]
+        at (current page.north west)
+        {\includegraphics[height=0.8cm]{source/smu_header_small_left.png}};
+      
+      \node[anchor=west, text=smublue, font=\bfseries\Large]
+        at ([xshift=2.1cm, yshift=-0.43cm]current page.north west)
+        {\insertframetitle};
+    \end{tikzpicture}%
+    \vspace{0.3cm}%
+  \fi
+}
+
+% ================================================================================
+% Footer with Progress Bar
+% ================================================================================
+
+\defbeamertemplate{footline}{progress bar}{%
+  \leavevmode%
+  \ifnum\theframenumber=1\relax
+  \else
+    \begin{tikzpicture}[remember picture,overlay]
+      \pgfmathsetmacro{\progress}{\insertframenumber/\inserttotalframenumber}
+
+      \fill[smulightblue] 
+        (current page.south west) 
+        rectangle 
+        ([yshift=3pt]current page.south east);
+
+      \fill[smublue] 
+        (current page.south west) 
+        rectangle 
+        ([xshift=\progress*\paperwidth, yshift=3pt]current page.south west);
+      
+      % Draw page number
+      \node[anchor=south east, text=smublue, font=\bfseries\footnotesize]
+        at ([xshift=-0.35cm, yshift=0.28cm]current page.south east)
+        {\insertframenumber};
+    \end{tikzpicture}%
+  \fi
+}
+\setbeamertemplate{footline}[progress bar]
+
+% ================================================================================
+% Table of Contents Settings
+% ================================================================================
+
+\setbeamertemplate{section in toc}{%
+  \leavevmode\leftskip=1.5em%
+  {\color{smublue}$\bullet$}\hspace{0.5em}%
+  \inserttocsection\par%
+}
+
+\setbeamertemplate{subsection in toc}{%
+  \leavevmode\leftskip=3em%
+  {\color{smulightblue}\tiny\raise1.5pt\hbox{\rule{4pt}{4pt}}}\hspace{0.5em}%
+  \inserttocsubsection\par%
+}
+
+% ================================================================================
+% Section Page Template
+% ================================================================================
+
+\newcommand{\smusectionpage}{%
+  \begin{frame}[plain]%
+    \begin{tikzpicture}[remember picture,overlay]
+      \smu@drawheader{2cm}
+      
+      % Create a centered container with circle and title side by side
+      \node[anchor=center, inner sep=0pt] at (current page.center) {
+        \begin{minipage}{0.85\paperwidth}
+          \centering
+          \begin{minipage}[c]{1.6cm}
+            \centering
+            \begin{tikzpicture}
+              \node[circle, fill=smublue!10, minimum size=1.6cm] at (0,0) {};
+              \node[text=smublue, font=\bfseries\fontsize{20}{14}\selectfont] 
+                at (0,0) {\smu@currentsectionnumber};
+            \end{tikzpicture}
+          \end{minipage}%
+          \hspace{0.8cm}%
+          \begin{minipage}[c]{0.7\paperwidth}
+            \raggedright
+            {\bfseries\fontsize{20}{24}\selectfont\insertsection}
+          \end{minipage}
+        \end{minipage}
+      };
+    \end{tikzpicture}%
+  \end{frame}%
+}
+
+\AtBeginSection[]{\smusectionpage}
+
+% ================================================================================
+% Thank You Page (Backmatter)
+% Usage: \backmatter at the end of presentation
+% ================================================================================
+
+\newcommand{\backmatter}{%
+  \begingroup
+  \setbeamertemplate{headline}{}%
+  \setbeamertemplate{footline}{}%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \smu@drawheader{2cm}
+      
+      \node[anchor=center] at (current page.center) {
+        \begin{minipage}{\textwidth}
+          \centering
+          {\fontsize{26}{24}\selectfont\textcolor{smublue}{\textbf{Thank You}}\par}%
+          \vspace{0.4cm}%
+          {\fontsize{16}{14}\selectfont\textcolor{smublue}{Q \& A}\par}%
+        \end{minipage}
+      };
+    \end{tikzpicture}%
+  \end{frame}%
+  \endgroup
+}
+
+\endinput

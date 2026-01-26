@@ -1,0 +1,759 @@
+\documentclass[10pt,aspectratio=1610]{beamer}
+
+% ================================================================================
+% Load SMU Theme
+% ================================================================================
+\usepackage{smu}
+
+% ================================================================================
+% Bibliography Configuration (User-defined)
+% ================================================================================
+\usepackage[
+    style=alphabetic,
+    block=space,
+    maxbibnames=99,
+    maxalphanames=3,
+    minalphanames=3
+]{biblatex}
+\addbibresource{ref.bib}
+
+% Custom citation label template
+\DeclareLabelalphaTemplate{
+  \labelelement{
+    \field[final]{shorthand}
+    \field{label}
+    \field[strwidth=3,strside=left,ifnames=1]{labelname}
+    \field[strwidth=1,strside=left,ifnames=2]{labelname}
+    \field[strwidth=1,strside=left,ifnames=3]{labelname}
+    \field[strwidth=1,strside=left]{labelname}
+  }
+  \labelelement{
+    \literal{+}
+  }
+  \labelelement{
+    \field[strwidth=2,strside=right]{year}
+  }
+}
+
+\renewcommand*{\labelalphaothers}{\ifnumgreater{\value{listtotal}}{3}{+}{}}
+\renewcommand*{\newunitpunct}{\addcomma\space}
+
+% Field formatting
+\DeclareFieldFormat*{title}{#1\addperiod}
+\DeclareFieldFormat*{citetitle}{#1}
+\DeclareFieldFormat{booktitle}{\textit{#1}}
+\DeclareFieldFormat{journaltitle}{\textit{#1}}
+
+% Bibliography spacing for beamer
+\setlength{\bibitemsep}{0.3ex}
+\setlength{\bibnamesep}{0.3ex}
+\setlength{\bibinitsep}{0ex}
+\renewcommand*{\bibfont}{\tiny}
+
+% ================================================================================
+% Additional Packages
+% ================================================================================
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{lipsum}
+
+% ================================================================================
+% Presentation Metadata
+% ================================================================================
+\title{SMU Beamer Theme}
+\subtitle{Complete Feature Demonstration}
+\author{Your Name}
+\institute[SMU]{School of Computing and Information Systems\\Singapore Management University}
+\date{\today}
+
+% ================================================================================
+% Document Body
+% ================================================================================
+\begin{document}
+
+% ================================================================================
+% Title Page
+% ================================================================================
+\maketitle
+
+% ================================================================================
+% Table of Contents
+% ================================================================================
+\begin{frame}[allowframebreaks]{Overview}
+    \tableofcontents
+\end{frame}
+
+% ================================================================================
+\section{Basic Settings}
+% ================================================================================
+
+\subsection{Introduction}
+
+\begin{frame}{About This Theme}
+    The SMU Beamer Theme provides a LaTeX beamer template based on SMU's official PowerPoint template, with enhanced features for academic presentations:
+    \begin{itemize}
+        \item Official SMU branding and colors
+        \item Code highlighting with minted
+        \item Custom block components
+        \item Flexible layout options
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Key Features}
+    \begin{twocolumns}
+        \leftcol{
+            \textbf{Design \& Layout:}
+            \begin{itemize}
+                \item Professional SMU branding
+                \item Progress bar footer
+                \item Section transition pages
+                \item Multi-column layouts
+            \end{itemize}
+            
+            \vspace{0.5em}
+            
+            \textbf{Text \& Colors:}
+            \begin{itemize}
+                \item Custom color commands
+                \item Text highlighting
+                \item Bold color variants
+            \end{itemize}
+        }
+        \rightcol{
+            \textbf{Code Highlighting:}
+            \begin{itemize}
+                \item Minted integration
+                \item 10+ programming languages
+                \item 49 built-in themes
+                \item Inline code support
+            \end{itemize}
+            
+            \vspace{0.5em}
+            
+            \textbf{Custom Blocks:}
+            \begin{itemize}
+                \item Standard blocks
+                \item Alert blocks
+                \item Mathematical boxes (Theorem, etc.)
+                \item Tagged blocks
+            \end{itemize}
+        }
+    \end{twocolumns}
+\end{frame}
+
+% ================================================================================
+\subsection{Text Formatting}
+% ================================================================================
+
+\begin{frame}{Basic Text Formatting}
+    \textbf{Font Styles:}
+    \begin{itemize}
+        \item Regular text in Calibri font
+        \item \textbf{Bold text appears in SMU blue}
+        \item \textit{Italic text for emphasis}
+        \item \redbf{Important warning} using red bold
+        \item \bluebf{Key concept} using blue bold
+    \end{itemize}
+    
+    \vspace{1em}
+    
+    \textbf{Inline Code Style:}
+    \begin{itemize}
+        \item Use \smucode{inline code} for technical terms
+        \item Function names like \smucode{printf()} or \smucode{main()}
+        \item Styles can be customized in \smucode{smucore/smucode.def}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Custom Colors}
+    \textbf{SMU Brand Colors:}
+    \begin{itemize}
+        \item \smucolor{smublue}{SMU Blue - Primary color}
+        \item \smucolor{smulightblue}{SMU Light Blue - Secondary color}
+        \item \smucolor{smugold}{SMU Gold - Accent color}
+        \item \smucolor{smugreen}{SMU Green - Additional accent}
+    \end{itemize}
+    
+    \vspace{1em}
+    
+    \textbf{Additional Accent Colors:}
+    \begin{itemize}
+        \item \smucolor{scisyellow}{SCIS Yellow - School of Computing}
+        \item \smucolor{alertred}{Alert Red - For warnings}
+        \item \smucolor{mutedblue}{Muted Blue - Alternative blue}
+        \item \smucolor{mutedgreen}{Muted Green - Alternative green}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mathematical Formulas}
+    \textbf{Inline Mathematics:}
+    
+    Einstein's famous equation $E = mc^2$, Euler's number $e \approx 2.71828$, and pi $\pi \approx 3.14159$.
+    
+    \vspace{1em}
+    
+    \textbf{Display Equations:}
+    \[ \int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2} \]
+    
+    \[ \nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t} \]
+    
+    \vspace{0.5em}
+    
+    \textbf{Aligned Equations:}
+    \begin{align*}
+        f(x) &= x^2 + 2x + 1 \\
+             &= (x + 1)^2 \\
+             &= (x + 1)(x + 1)
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Text \& Mathematical Highlighting}
+    \textbf{Basic Highlighting:}
+    
+    Normal text with \shadedtext{default highlighted content} using SMU blue.
+    
+    \vspace{0.5em}
+    
+    \textbf{Custom Colors:}
+    
+    Different colors: \shadedtext[alertred]{red highlight}, 
+    \shadedtext[smugreen]{green highlight}, 
+    \shadedtext[scisyellow]{yellow highlight}, and 
+    \shadedtext[mutedblue]{blue highlight}.
+    
+    \vspace{1em}
+    
+    \textbf{Math Formula Highlighting:}
+    
+    Inline math: \shadedmathbox{E = mc^2} and \shadedmathbox[smugreen]{a^2 + b^2 = c^2}
+    
+    \vspace{0.5em}
+    
+    Display math: \shadedmathdisplay[scisyellow]{\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}}
+\end{frame}
+
+% ================================================================================
+\section{Components Design}
+% ================================================================================
+
+\subsection{Block Environments}
+
+\begin{frame}{Block Showcase}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Standard}
+                This is a standard block with SMU styling.
+            \end{block}
+            
+            \vspace{0.3em}
+            
+            \begin{alertblock}{Alert}
+                Warning block for important information.
+            \end{alertblock}
+            
+            \vspace{0.3em}
+            
+            \begin{examples}
+                Example block for demonstrating concepts.
+            \end{examples}
+        \end{column}
+        
+        \begin{column}{0.48\textwidth}
+            \begin{lightbox}
+                Light box for highlighting supplementary information.
+            \end{lightbox}
+            
+            \vspace{0.3em}
+            
+            \begin{tagblock}{Tag}
+                Tagged block for categorized content.
+            \end{tagblock}
+            
+            \vspace{0.3em}
+            
+            \begin{theorem}[Pythagorean Theorem]
+                For a right triangle with sides $a$ and $b$, and hypotenuse $c$:
+                \[ a^2 + b^2 = c^2 \]
+            \end{theorem}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{Column Layouts}
+
+\begin{frame}{Two Column Layout - Custom Width}
+    The \smucode{\textbackslash begin\{twocolumns\}} command defaults to 50\% width for each column. You can use \smucode{\textbackslash leftcol[0.6]} and \smucode{\textbackslash rightcol[0.35]} to customize the column widths.
+    
+    \begin{twocolumns}
+        \leftcol[0.6]{
+            \begin{block}{Wider Left Column (60\%)}
+                This column takes 60\% of the available width, leaving 35\% for the right column (plus some spacing).
+                
+                \vspace{0.5em}
+                
+                Useful for:
+                \begin{itemize}
+                    \item Main content vs. sidebar
+                    \item Text vs. small figure
+                    \item Detailed explanation vs. summary
+                \end{itemize}
+            \end{block}
+        }
+        \rightcol[0.35]{
+            \begin{block}{Narrow Right (35\%)}
+                Smaller column for supplementary information.
+            \end{block}
+        }
+    \end{twocolumns}
+\end{frame}
+
+\begin{frame}{Three Column Layout}
+    \begin{threecolumns}
+        \leftcol[0.31]{
+            \textbf{Step 1}
+            
+            Initialize
+            
+            \vspace{0.3em}
+            
+            \redbf{Input:} Data
+        }
+        \midcol[0.31]{
+            \textbf{Step 2}
+            
+            Process
+            
+            \vspace{0.3em}
+            
+            \bluebf{Transform:} Apply
+        }
+        \rightcol[0.31]{
+            \textbf{Step 3}
+            
+            Output
+            
+            \vspace{0.3em}
+            
+            \smucolor{smugreen}{\textbf{Result:} Done}
+        }
+    \end{threecolumns}
+    
+    \vspace{0.5em}
+    
+    \begin{lightbox}
+        Three columns are perfect for showing processes or comparisons.
+    \end{lightbox}
+\end{frame}
+
+% ================================================================================
+\subsection{Tables and Lists}
+% ================================================================================
+
+\begin{frame}{Tables}
+    \textbf{Example: Performance Comparison}
+    
+    \vspace{0.5em}
+    
+    \begin{table}
+        \centering
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{Method} & \textbf{Accuracy (\%)} & \textbf{Time (ms)} & \textbf{Memory (MB)} \\
+            \midrule
+            Method A & 95.3 & 12.5 & 128 \\
+            Method B & 97.1 & 18.2 & 256 \\
+            Method C & 96.8 & 15.7 & 192 \\
+            \bluebf{Ours} & \bluebf{98.5} & \bluebf{14.3} & \bluebf{160} \\
+            \bottomrule
+        \end{tabular}
+        \caption{Performance comparison of different methods}
+    \end{table}
+    
+    \vspace{0.5em}
+    
+    \begin{lightbox}
+        Use \texttt{booktabs} package for professional-looking tables.
+    \end{lightbox}
+\end{frame}
+
+\begin{frame}{Mixed Lists in Columns}
+    \begin{twocolumns}
+        \leftcol{
+            \textbf{Unordered Lists (Itemize):}
+            \begin{itemize}
+                \item First level item
+                \item Another first level item
+                \begin{itemize}
+                    \item Second level nested item
+                    \item Another second level item
+                    \begin{itemize}
+                        \item Third level deeply nested
+                        \item More third level content
+                    \end{itemize}
+                    \item Back to second level
+                \end{itemize}
+                \item Back to first level
+                \item Final first level item
+            \end{itemize}
+        }
+        \rightcol{
+            \textbf{Ordered Lists (Enumerate):}
+            \begin{enumerate}
+                \item First step in the process
+                \item Second step with details
+                \begin{enumerate}
+                    \item Sub-step 2.1
+                    \item Sub-step 2.2
+                    \begin{enumerate}
+                        \item Sub-sub-step 2.2.1
+                        \item Sub-sub-step 2.2.2
+                    \end{enumerate}
+                \end{enumerate}
+                \item Third step returning to main level
+                \item Fourth and final step
+            \end{enumerate}
+        }
+    \end{twocolumns}
+\end{frame}
+
+\begin{frame}{Description Lists}
+    \textbf{Custom Description Lists:}
+    
+    \begin{description}
+        \item[\bluebf{API}] Application Programming Interface for software communication
+        \item[\bluebf{SDK}] Software Development Kit containing tools and libraries
+        \item[\bluebf{IDE}] Integrated Development Environment for coding
+        \item[\bluebf{CI/CD}] Continuous Integration and Continuous Deployment
+    \end{description}
+    
+    \vspace{1em}
+    
+    \begin{lightbox}
+        Description lists are perfect for glossaries or term definitions.
+    \end{lightbox}
+\end{frame}
+
+% ================================================================================
+\section{Code Rendering}
+% ================================================================================
+
+\subsection{Code Highlighting}
+
+\begin{frame}[fragile]{Code Highlighting Features}
+    The theme uses \textbf{minted} for professional code highlighting:
+    
+    \vspace{0.5em}
+    
+    \begin{twocolumns}
+        \leftcol{
+            \textbf{Features:}
+            \begin{itemize}
+                \item Line numbers
+                \item Syntax highlighting
+                \item 49 color themes
+                \item 100+ languages
+                \item Inline code support
+            \end{itemize}
+        }
+        \rightcol{
+            \textbf{Supported Languages:}
+            \begin{itemize}
+                \item Python, C, C++, Java
+                \item JavaScript, TypeScript
+                \item Go, Rust, Shell
+                \item SQL, R, MATLAB
+                \item And many more!
+            \end{itemize}
+        }
+    \end{twocolumns}
+    
+    \vspace{0.5em}
+    
+    \begin{alertblock}{Important}
+        Always use \texttt{[fragile]} option when frames contain code blocks!
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Python: Fibonacci Sequence}
+\begin{minted}{python}
+def fibonacci(n):
+    """Calculate the nth Fibonacci number using recursion"""
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+def fibonacci_iterative(n):
+    """Calculate Fibonacci iteratively (more efficient)"""
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+# Test the functions
+for i in range(10):
+    result = fibonacci_iterative(i)
+    print("F(%d) = %d" % (i, result))
+\end{minted}
+
+Inline Python: \pyinline{lambda x: x**2}
+\end{frame}
+
+\begin{frame}[fragile]{C++: Template Function}
+\begin{minted}{cpp}
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+template<typename T>
+T findMax(const std::vector<T>& arr) {
+    if (arr.empty()) {
+        throw std::runtime_error("Empty vector");
+    }
+    return *std::max_element(arr.begin(), arr.end());
+}
+
+int main() {
+    std::vector<int> numbers = {3, 7, 2, 9, 1, 5};
+    std::cout << "Maximum: " << findMax(numbers) << std::endl;
+    
+    std::vector<double> values = {3.14, 2.71, 1.41};
+    std::cout << "Maximum: " << findMax(values) << std::endl;
+    
+    return 0;
+}
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{SQL and Shell Scripts}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{SQL Query}
+\begin{minted}{sql}
+SELECT 
+    s.student_name,
+    AVG(g.score) as avg_score,
+    COUNT(*) as num_courses
+FROM students s
+JOIN grades g 
+    ON s.id = g.student_id
+WHERE g.score >= 80
+GROUP BY s.id, s.student_name
+HAVING COUNT(*) >= 3
+ORDER BY avg_score DESC
+LIMIT 10;
+\end{minted}
+        \end{column}
+        
+        \begin{column}{0.48\textwidth}
+            \textbf{Bash Script}
+\begin{minted}{bash}
+#!/bin/bash
+
+BACKUP_DIR="/backup"
+DATE=$(date +%Y%m%d)
+SOURCE="/data"
+
+# Create backup
+echo "Starting backup..."
+tar -czf \
+  "$BACKUP_DIR/bk_$DATE.tar.gz" \
+  "$SOURCE"
+
+if [ $? -eq 0 ]; then
+    echo "Backup completed"
+else
+    echo "Backup failed!"
+    exit 1
+fi
+\end{minted}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Inline Code Examples}
+    \textbf{Inline code for different languages:}
+    
+    \begin{itemize}
+        \item Python: \pyinline{def hello(): return "world"}
+        \item C: \cinline{int *ptr = malloc(sizeof(int));}
+        \item Java: \javainline{List<String> names = new ArrayList<>();}
+        \item JavaScript: \jsinline{const arr = [1, 2, 3].map(x => x * 2);}
+    \end{itemize}
+    
+    \vspace{1em}
+    
+    \begin{block}{Generic Inline Code}
+        You can also use \smucode{\textbackslash code[language]\{code\}} for any language:
+        \begin{itemize}
+            \item Generic: Use \code[C]{printf("Hello")} for output
+            \item Commands: Run \smucode{git commit -m "message"}
+            \item Paths: See file \smucode{/etc/config.conf}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% ================================================================================
+\subsection{Summary}
+% ================================================================================
+
+\begin{frame}{Theme Components Summary}
+    \begin{twocolumns}
+        \leftcol{
+            \textbf{Text \& Colors:}
+            \begin{itemize}
+                \item SMU brand colors
+                \item Custom color commands
+                \item Text highlighting
+                \item Bold color variants
+                \item Math highlighting
+            \end{itemize}
+            
+            \vspace{0.5em}
+            
+            \textbf{Blocks:}
+            \begin{itemize}
+                \item Standard blocks
+                \item Alert blocks
+                \item Example blocks
+                \item Light boxes
+                \item Tagged blocks
+                \item Theorem boxes
+            \end{itemize}
+        }
+        \rightcol{
+            \textbf{Code:}
+            \begin{itemize}
+                \item Minted integration
+                \item 49 color themes
+                \item 100+ languages
+                \item Line numbers
+                \item Inline code
+            \end{itemize}
+            
+            \vspace{0.5em}
+            
+            \textbf{Layout:}
+            \begin{itemize}
+                \item 2-column layouts
+                \item 3-column layouts
+                \item Custom widths
+                \item Progress bar
+                \item Section pages
+            \end{itemize}
+        }
+    \end{twocolumns}
+\end{frame}
+
+\begin{frame}{Quick Reference}
+    \begin{tagblock}{Getting Started}
+        Load the theme: \smucode{\textbackslash usepackage\{smu\}}
+    \end{tagblock}
+    
+    \vspace{0.3em}
+    
+    \begin{tagblock}{Code Highlighting}
+        For code blocks: \smucode{\textbackslash begin\{frame\}[fragile]}
+        
+        Use environments: \smucode{pycode}, \smucode{cppcode}, \smucode{jscode}, etc.
+    \end{tagblock}
+    
+    \vspace{0.3em}
+    
+    \begin{tagblock}{Columns}
+        Two columns: \smucode{\textbackslash begin\{twocolumns\}...\textbackslash end\{twocolumns\}}
+        
+        Three columns: \smucode{\textbackslash begin\{threecolumns\}...\textbackslash end\{threecolumns\}}
+    \end{tagblock}
+    
+    \vspace{0.3em}
+    
+    \begin{tagblock}{Documentation}
+        See \texttt{README.md} for detailed documentation and examples.
+    \end{tagblock}
+\end{frame}
+
+\begin{frame}{Customization}
+    \textbf{The theme is highly customizable:}
+    
+    \vspace{0.5em}
+    
+    \begin{description}
+        \item[\bluebf{Colors}] Edit \texttt{smucore/smucolors.def}
+        \item[\bluebf{Fonts}] Edit \texttt{smucore/smufonts.def}
+        \item[\bluebf{Code Style}] Edit \texttt{smucore/smucode.def}
+        \item[\bluebf{Commands}] Edit \texttt{smucore/smucommands.def}
+        \item[\bluebf{Blocks}] Edit \texttt{smucore/smublocks.def}
+        \item[\bluebf{Templates}] Edit \texttt{smucore/smutemplates.def}
+    \end{description}
+    
+    \vspace{1em}
+    
+    \begin{lightbox}
+        All components are modular and can be customized independently!
+    \end{lightbox}
+\end{frame}
+
+\begin{frame}{Resources}
+    \begin{tagblock}{Documentation}
+        \begin{itemize}
+            \item \texttt{README.md} - Main documentation
+            \item \texttt{main\_test.tex} - This demo file
+            \item Source files in \texttt{smucore/} directory
+        \end{itemize}
+    \end{tagblock}
+    
+    \vspace{0.5em}
+    
+    \begin{tagblock}{External Resources}
+        \begin{itemize}
+            \item Minted: \url{https://ctan.org/pkg/minted}
+            \item Beamer: \url{https://ctan.org/pkg/beamer}
+            \item Pygments Styles: \url{https://pygments.org/styles/}
+        \end{itemize}
+    \end{tagblock}
+\end{frame}
+
+\begin{frame}{Reference Test}
+\textbf{MtA-based Approaches (Multiplicative-to-Additive)}
+    \begin{itemize}
+        \item Paillier Encryption: Requires strong-RSA assumption.
+        \\
+        \cite{GGN16/gennaro2016threshold, Lin17/lindell2021fast, GG18/gennaro2018fast, CGG20+/canetti2020uc, XLX24/xie2024direct}
+        \item CL Encryption: Based on Class Groups.
+        \\
+        \cite{CLL+19/castagnos2019two, CCL+20/castagnos2020bandwidth, YCX21/yuen2021compact, DMA+21/deng2021promise}
+        \item Oblivious Transfer: No extra assumptions and computationally efficient.
+        \\
+        \cite{DKLs18/doerner2018secure, DKLs19/doerner2019threshold, DKLs23/doerner2024threshold}
+        \item Joye-Libert: Based on revisited Joye-Libert encryption.
+        \\
+        \cite{XAL+23/xue2023efficient}
+    \end{itemize}
+
+\textbf{Threshold CL Encryption}
+    \begin{itemize}
+        \item Decryption key of CL shared among $n$ parties.
+        \\
+        \cite{BDO23/braun2023secure, WMY23/wong2023real, WMC24/wong2024secure, TX25/tang2025robust, JTX25/jiang2025three}
+    \end{itemize}
+
+\textbf{Others}
+\begin{itemize}
+    \item Pseudorandom Correlation Generator \cite{ANO+22/abram2022low}, ...
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+    \linespread{0.8}\selectfont
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \printbibliography[heading=none]
+\end{frame}
+
+% ================================================================================
+% Thank You Page
+% ================================================================================
+\backmatter
+
+\end{document}

@@ -1,0 +1,78 @@
+%-------------------------------------------------------------
+%  SMU Beamer Theme - Color Definitions
+%  Author: qsang
+%  Version: 2.0.0, 2026/01/26
+%-------------------------------------------------------------
+
+% ================================================================================
+% SMU Brand Colors
+% ================================================================================
+\definecolor{smublue}{HTML}{151C55}
+\definecolor{smulightblue}{HTML}{C5CBDD}
+\definecolor{smugold}{HTML}{8A704C}
+\definecolor{smuwhite}{HTML}{F0EDE9}
+\definecolor{smugreen}{HTML}{76704C}
+
+% ================================================================================
+% SCIS Colors
+% ================================================================================
+\definecolor{scisyellow}{HTML}{C7931D}
+
+% ================================================================================
+% Accent Colors
+% ================================================================================
+\definecolor{alertred}{HTML}{D41F34}
+\definecolor{mutedblue}{HTML}{332797}
+\definecolor{lightyellow}{HTML}{DDB556}
+\definecolor{codepurple}{HTML}{8A2BE2}
+\definecolor{mutedgreen}{HTML}{005345}
+
+% ================================================================================
+% Code Highlighting Colors (for minted)
+% ================================================================================
+\definecolor{ghBackground}{HTML}{FAFAFA}    % Background color
+\definecolor{ghText}{HTML}{383A42}          % Normal text
+\definecolor{ghKeyword}{HTML}{A626A4}       % Keywords (purple)
+\definecolor{ghString}{HTML}{50A14F}        % Strings (green)
+\definecolor{ghComment}{HTML}{A0A1A7}       % Comments (gray)
+\definecolor{ghFunction}{HTML}{C18401}      % Function names (orange)
+\definecolor{ghNumber}{HTML}{986801}        % Numbers (dark orange)
+\definecolor{ghLineNum}{HTML}{9DA5B4}       % Line numbers (light gray)
+\definecolor{ghOperator}{HTML}{0184BC}      % Operators (blue)
+\definecolor{ghType}{HTML}{267F99}          % Types/Classes (dark cyan)
+\definecolor{ghConstant}{HTML}{E45649}      % Constants (red)
+\definecolor{ghBuiltin}{HTML}{4078F2}       % Built-in functions (bright blue)
+\definecolor{ghBorder}{HTML}{6CE26C}        % Border color (green)
+
+% ================================================================================
+% Beamer Color Theme
+% ================================================================================
+\setbeamercolor{title}{fg=smublue}
+\setbeamercolor{subtitle}{fg=smublue}
+\setbeamercolor{author}{fg=smublue}
+\setbeamercolor{date}{fg=smublue}
+\setbeamercolor{institute}{fg=smublue}
+\setbeamercolor{alerted text}{fg=alertred}
+\setbeamercolor{normal text}{fg=black, bg=white}
+\setbeamercolor{structure}{fg=smublue}
+\setbeamercolor{progress bar}{fg=smublue, bg=smulightblue}
+\setbeamercolor{progress bar progress}{use=progress bar, bg=progress bar.fg}
+\setbeamercolor{block title}{fg=white, bg=smublue}
+\setbeamercolor{block body}{fg=black, bg=gray!10}
+\setbeamercolor{section in toc}{fg=smublue}
+\setbeamercolor{subsection in toc}{fg=black}
+\setbeamercolor{lightbox body}{fg=smublue, bg=smulightblue}
+
+% ================================================================================
+% Hyperlink Colors
+% ================================================================================
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=smublue,
+  anchorcolor=red,
+  citecolor=blue!80,
+  urlcolor=scisyellow
+}
+
+\endinput

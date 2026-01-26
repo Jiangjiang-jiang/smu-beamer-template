@@ -1,0 +1,90 @@
+%-------------------------------------------------------------
+%  Package: SMU Beamer Theme
+%  Author: qsang
+%  Version: 2.0.0, 2026/01/26
+%  Description: Modular beamer theme for SMU
+%-------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smu}[2026/01/26 v2.0.0 Beamer Theme for SMU]
+
+% ================================================================================
+% Package Options
+% ================================================================================
+\newif\ifsmu@debug
+\DeclareOption{debug}{\smu@debugtrue}
+\DeclareOption{final}{\smu@debugfalse}
+\ExecuteOptions{final}
+\ProcessOptions\relax
+
+% ================================================================================
+% Required Packages
+% ================================================================================
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage{xcolor}
+\RequirePackage{amsmath, amssymb, amsfonts, amsthm}
+\RequirePackage{verbatim}
+\RequirePackage{bm}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{multicol}
+\RequirePackage{soul}
+\RequirePackage{ulem}
+
+% ================================================================================
+% Typography and Layout
+% ================================================================================
+\setbeamersize{
+  text margin left=8mm,
+  text margin right=8mm
+}
+
+% Overfull/underfull tolerance
+\ifsmu@debug
+  \hfuzz=0pt
+  \vfuzz=0pt
+  \overfullrule=5pt
+\else
+  \hfuzz=2pt
+  \vfuzz=2pt
+  \overfullrule=0pt
+\fi
+
+\hbadness=10000
+\vbadness=10000
+\tolerance=2000
+\pretolerance=1000
+\emergencystretch=1em
+
+% ================================================================================
+% Beamer Template Settings
+% ================================================================================
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded,default]
+\setbeamertemplate{headline}{}
+\setbeamertemplate{frametitle continuation}{}
+
+\setbeamertemplate{itemize item}{\small\color{smugreen}$\bullet$}
+\setbeamertemplate{itemize subitem}{\tiny\raise1.5pt\hbox{\color{smulightblue}\rule{3pt}{3pt}}}
+\setbeamertemplate{itemize subsubitem}{\ensuremath{\circ}}
+
+\setlength{\parskip}{0.5em}
+\setbeamertemplate{itemize/enumerate body begin}{%
+  \setlength{\itemsep}{0.5em}%
+  \setlength{\leftmargini}{1.5em}%
+  \setlength{\leftmarginii}{1.5em}%
+  \setlength{\labelsep}{0.5em}%
+  \setlength{\labelwidth}{1em}%
+}
+
+% ================================================================================
+% Load Theme Modules
+% ================================================================================
+\input{smucore/smucolors.def}       % Color definitions
+\input{smucore/smufonts.def}        % Font configurations
+\input{smucore/smucode.def}         % Code highlighting (minted)
+\input{smucore/smucommands.def}     % Custom commands
+\input{smucore/smublocks.def}       % Block environments
+\input{smucore/smutemplates.def}    % Page templates
+
+\endinput

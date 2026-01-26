@@ -1,0 +1,109 @@
+%-------------------------------------------------------------
+%  SMU Beamer Theme - Custom Block Environments
+%  Author: qsang
+%  Version: 2.0.0, 2026/01/26
+%-------------------------------------------------------------
+
+% ================================================================================
+% Required Package
+% ================================================================================
+\RequirePackage[most]{tcolorbox}
+
+% ================================================================================
+% Tag Block Environment
+% ================================================================================
+\newtcolorbox{tagblock}[2][]{%
+  enhanced,
+  colback=gray!10,
+  colframe=smublue,
+  coltitle=white,
+  arc=3pt,
+  boxrule=1pt,
+  left=2mm,
+  right=2mm,
+  top=4mm,
+  bottom=2mm,
+  breakable,
+  attach boxed title to top left={xshift=2mm,yshift=-\tcboxedtitleheight/2},
+  boxed title style={colback=smublue, colframe=smublue, coltitle=smulightblue, size=small, arc=2pt},
+  title={#2},
+  #1
+}
+
+\newenvironment{tagmdframe}[1]{%
+  \begin{tagblock}{#1}%
+}{%
+  \end{tagblock}%
+}
+
+% ================================================================================
+% SMU Block Environment
+% ================================================================================
+\newtcolorbox{smublock}[2][]{%
+  enhanced,
+  colback=gray!10,
+  colframe=smublue,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=#2,
+  arc=3pt,
+  boxrule=1pt,
+  breakable,
+  top=2mm,
+  bottom=2mm,
+  left=2mm,
+  right=2mm,
+  #1
+}
+
+
+\newtcolorbox{lightbox}[1][]{%
+  colback=smulightblue,
+  colframe=smulightblue,
+  boxrule=0pt,
+  arc=4pt,
+  left=5mm,
+  right=5mm,
+  top=4mm,
+  bottom=4mm,
+  breakable,
+  #1
+}
+
+% ================================================================================
+% Theorem Box Environment
+% ================================================================================
+\newtcolorbox{theorembox}[2][]{%
+  enhanced,
+  colback=gray!10,
+  colframe=smublue,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Theorem\if\relax\detokenize{#2}\relax\else: #2\fi,
+  arc=3pt,
+  boxrule=1pt,
+  breakable,
+  top=2mm,
+  bottom=2mm,
+  left=2mm,
+  right=2mm,
+  #1
+}
+
+
+% ================================================================================
+% Redefine Standard Beamer Environments
+% ================================================================================
+\renewenvironment{block}[1]{%
+  \begin{smublock}[]{#1}%
+}{%
+  \end{smublock}%
+}
+
+\renewenvironment{theorem}[1][]{%
+  \begin{theorembox}{#1}%
+}{%
+  \end{theorembox}%
+}
+
+\endinput

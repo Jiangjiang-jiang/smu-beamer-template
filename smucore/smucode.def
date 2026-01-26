@@ -1,0 +1,151 @@
+%-------------------------------------------------------------
+%  SMU Beamer Theme - Code Highlighting with Minted
+%  Author: qsang
+%  Version: 2.0.0, 2026/01/26
+%-------------------------------------------------------------
+
+% ================================================================================
+% Minted Package Configuration
+% ================================================================================
+\RequirePackage{minted}
+
+% ================================================================================
+% Global Settings
+% ================================================================================
+\setminted{
+  bgcolor=ghBackground,
+  fontsize=\footnotesize,
+  linenos=true,
+  numbersep=10pt,
+  frame=leftline,
+  framesep=3pt,
+  framerule=2pt,
+  rulecolor=\color{ghBorder},
+  xleftmargin=15pt,
+  xrightmargin=6pt,
+  breaklines=true,
+  breakanywhere=false,
+  tabsize=4,
+  autogobble=true,
+  python3=true,
+}
+
+% ================================================================================
+% Highlighting Style (Pygments)
+% ================================================================================
+\usemintedstyle{solarized-light}
+
+% Alternative light themes:
+% \usemintedstyle{default}         % Simple and clean
+% \usemintedstyle{friendly}        % Friendly light theme
+% \usemintedstyle{gruvbox-light}   % Retro style
+% \usemintedstyle{xcode}           % Xcode style
+% \usemintedstyle{vs}              % Visual Studio style
+
+% Dark themes:
+% \usemintedstyle{monokai}         % Classic dark
+% \usemintedstyle{dracula}         % Popular Dracula theme
+% \usemintedstyle{one-dark}        % Atom One Dark
+% \usemintedstyle{nord}            % Nord theme
+
+% Note: All styles are built-in and work on both local and Overleaf
+% Full list: https://pygments.org/styles/
+
+% ================================================================================
+% Line Number Styling
+% ================================================================================
+\renewcommand{\theFancyVerbLine}{%
+
+  \textcolor{ghLineNum}{\footnotesize\arabic{FancyVerbLine}}%
+}
+
+% ================================================================================
+% Convenience Environments
+% ================================================================================
+\newenvironment{ccode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{c}}
+  {\end{minted}}
+
+\newenvironment{cppcode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{cpp}}
+  {\end{minted}}
+
+\newenvironment{pycode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{python}}
+  {\end{minted}}
+
+\newenvironment{javacode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{java}}
+  {\end{minted}}
+
+\newenvironment{jscode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{javascript}}
+  {\end{minted}}
+
+\newenvironment{tscode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{typescript}}
+  {\end{minted}}
+
+\newenvironment{gocode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{go}}
+  {\end{minted}}
+
+\newenvironment{rustcode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{rust}}
+  {\end{minted}}
+
+\newenvironment{shellcode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{bash}}
+  {\end{minted}}
+
+\newenvironment{sqlcode}[1][]
+  {\VerbatimEnvironment\begin{minted}[#1]{sql}}
+  {\end{minted}}
+
+% ================================================================================
+% Inline Code Commands
+% ================================================================================
+\newcommand{\cinline}[1]{\mintinline{c}{#1}}
+\newcommand{\pyinline}[1]{\mintinline{python}{#1}}
+\newcommand{\javainline}[1]{\mintinline{java}{#1}}
+\newcommand{\jsinline}[1]{\mintinline{javascript}{#1}}
+\newcommand{\code}[2][c]{\mintinline{#1}{#2}}
+
+% ================================================================================
+% Import Code from File
+% ================================================================================
+% Usage: \inputcode{language}{path/to/file}{startline}{endline}
+\newcommand{\inputcode}[4]{%
+  \inputminted[firstline=#3,lastline=#4]{#1}{#2}%
+}
+
+% ================================================================================
+% Usage Examples
+% ================================================================================
+% 1. Basic usage:
+%    \begin{minted}{c}
+%    code here
+%    \end{minted}
+%
+% 2. Convenience environments:
+%    \begin{ccode}
+%    code here
+%    \end{ccode}
+%
+% 3. Inline code:
+%    \cinline{int x = 0;}
+%    \code[python]{print("Hello")}
+%
+% 4. Custom options:
+%    \begin{minted}[linenos=false,bgcolor=white]{python}
+%    code here
+%    \end{minted}
+%
+% 5. Frame with code (must use [fragile] option):
+%    \begin{frame}[fragile]{Title}
+%    \begin{minted}{c}
+%    code here
+%    \end{minted}
+%    \end{frame}
+
+\endinput

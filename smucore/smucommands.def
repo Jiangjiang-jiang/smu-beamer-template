@@ -1,0 +1,126 @@
+%-------------------------------------------------------------
+%  SMU Beamer Theme - Custom Commands
+%  Author: qsang
+%  Version: 2.0.0, 2026/01/26
+%-------------------------------------------------------------
+
+% ================================================================================
+% Text Formatting Commands
+% ================================================================================
+\newcommand{\smucolor}[2]{%
+  {\color{#1}#2}%
+}
+
+\newcommand{\smulink}[2]{%
+  \href{#1}{\nolinkurl{#2}}%
+}
+
+% Inline code command
+% Usage: \smucode{file\_name.txt}, \smucode{50\%}, \smucode{\#include}
+\newcommand{\smucode}[1]{\texttt{\small#1}}
+
+\newcommand{\smutextblock}[1]{%
+  \begin{minipage}{\linewidth}%
+    \raggedright
+    #1%
+  \end{minipage}%
+}
+
+% ================================================================================
+% Highlight Commands
+% Add colored background to text and math formulas
+% Usage: \shadedtext[color]{text} or \shadedmathbox{formula}
+% ================================================================================
+
+\newcommand{\shadedtext}[2][smublue]{%
+  \colorbox{#1!20}{#2}%
+}
+
+\newcommand{\shadedmathbox}[2][smublue]{%
+  \colorbox{#1!20}{$#2$}%
+}
+
+\newcommand{\shadedmathdisplay}[2][smublue]{%
+  \colorbox{#1!20}{$\displaystyle #2$}%
+}
+
+% ================================================================================
+% Colored Bold Text Commands
+% ================================================================================
+\newcommand{\redbf}[1]{%
+  \ifmmode
+    \textcolor{alertred}{\boldsymbol{#1}}%
+  \else
+    \textcolor{alertred}{\bfseries #1}%
+  \fi
+}
+
+\newcommand{\bluebf}[1]{%
+  \ifmmode
+    \textcolor{mutedblue}{\boldsymbol{#1}}%
+  \else
+    \textcolor{mutedblue}{\bfseries #1}%
+  \fi
+}
+
+% ================================================================================
+% Column Layout Shortcuts
+% Simplified multi-column layout commands
+% Usage:
+%   \begin{twocolumns}
+%     \leftcol{Left content}
+%     \rightcol{Right content}
+%   \end{twocolumns}
+%
+%   \begin{threecolumns}
+%     \leftcol{Left}
+%     \midcol{Middle}
+%     \rightcol{Right}
+%   \end{threecolumns}
+% ================================================================================
+
+\newenvironment{twocolumns}{%
+  \begin{columns}[T,onlytextwidth]%
+}{%
+  \end{columns}%
+}
+
+\newcommand{\leftcol}[2][0.48]{%
+  \begin{column}{#1\textwidth}#2\end{column}%
+}
+
+\newcommand{\rightcol}[2][0.48]{%
+  \begin{column}{#1\textwidth}#2\end{column}%
+}
+
+\newenvironment{threecolumns}{%
+  \begin{columns}[T,onlytextwidth]%
+}{%
+  \end{columns}%
+}
+
+\newcommand{\midcol}[2][0.31]{%
+  \begin{column}{#1\textwidth}#2\end{column}%
+}
+
+% ================================================================================
+% Section Numbering Commands
+% ================================================================================
+
+\newcommand{\smu@formatsectionnumber}[1]{%
+  \ifnum#1<10 %
+    0\number#1%
+  \else
+    \number#1%
+  \fi
+}
+
+\newcommand{\smu@currentsectionnumber}{%
+  \smu@formatsectionnumber{\the\value{section}}%
+}
+
+\newcommand{\formatsectionnumber}[1]{%
+  \smu@formatsectionnumber{#1}%
+}
+
+\endinput

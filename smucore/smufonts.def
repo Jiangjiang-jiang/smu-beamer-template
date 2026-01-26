@@ -1,0 +1,96 @@
+%-------------------------------------------------------------
+%  SMU Beamer Theme - Font Configuration
+%  Author: qsang
+%  Version: 2.0.0, 2026/01/26
+%-------------------------------------------------------------
+
+% ================================================================================
+% Font Package
+% ================================================================================
+\RequirePackage{fix-cm}        % Allow arbitrary font sizes for Computer Modern
+\RequirePackage{lmodern}
+\RequirePackage{fontspec}
+
+% ================================================================================
+% Calibri Font Configuration
+% ================================================================================
+
+\newcommand{\smu@calibriconfig}{%
+  Ligatures=TeX,
+  Path=./fonts/,
+  Extension=.ttf,
+  UprightFont=calibri,
+  BoldFont=calibrib,
+  ItalicFont=calibrii,
+  BoldItalicFont=calibriz,
+  Scale=1.0,
+  WordSpace={1,0,0}%
+}
+
+\setmainfont{calibri}[\smu@calibriconfig]
+\setsansfont{calibri}[\smu@calibriconfig]
+
+% ================================================================================
+% Consolas Font Configuration (Monospace)
+% ================================================================================
+
+\setmonofont{consola}[
+  WordSpace={1,0,0},
+  HyphenChar=None,
+  Path=./fonts/,
+  Extension=.ttf,
+  UprightFont=consola,
+  BoldFont=consolab,
+  ItalicFont=consolai,
+  BoldItalicFont=consolaz,
+  Scale=0.9,
+  FakeStretch=0.95
+]
+
+% ================================================================================
+% Beamer Font Theme
+% ================================================================================
+
+\usefonttheme{professionalfonts}
+
+\setbeamerfont{title}{series=\bfseries, size=\fontsize{22}{24}\selectfont}
+\setbeamerfont{subtitle}{series=\mdseries, size=\fontsize{18}{20}\selectfont}
+\setbeamerfont{author}{size=\fontsize{12}{14}\selectfont}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamerfont{institute}{size=\footnotesize}
+\setbeamerfont{alerted text}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries, size=\fontsize{13}{16}\selectfont}
+\setbeamerfont{framesubtitle}{series=\mdseries}
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamerfont{block title}{size=\normalsize, series=\bfseries}
+\setbeamerfont{block body}{size=\normalsize}
+\setbeamerfont{section in toc}{size=\Large}
+\setbeamerfont{subsection in toc}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+
+% ================================================================================
+% Custom Bold Text Command
+% Redefine \textbf to use smublue color in text mode and \boldsymbol in math mode
+% Usage: \textbf{Important text} or $\textbf{x + y}$
+% ================================================================================
+
+\renewcommand{\textbf}[1]{%
+  \ifmmode
+    \boldsymbol{#1}%
+  \else
+    \textcolor{smublue}{\bfseries #1}%
+  \fi
+}
+
+% ================================================================================
+% Typography Settings
+% ================================================================================
+
+\linespread{1.1}
+
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+
+\endinput
