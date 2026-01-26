@@ -3,11 +3,11 @@
 This is an unofficial Beamer presentation template for Singapore Management University (SMU).
 It is designed for postgraduate academic presentations, including seminars, defenses, and talks.
 
-**Version:** 2.0.0 
+- **Author:** qsang 
 
-**Author:** qsang 
+- **Contact:** qsangxin@gmail.com
 
-**Contact:** qsangxin@gmail.com
+Screenshots are follows and here is a full [demo](./main.pdf).
 
 |           Title Page            |           Key Features           |
 | :-----------------------------: | :------------------------------: |
@@ -15,16 +15,7 @@ It is designed for postgraduate academic presentations, including seminars, defe
 |     **Blocks & Components**     |     **Syntax Highlighting**      |
 |  ![Blocks](images/blocks.png)   |     ![Code](images/code.png)     |
 
-## Core Features
-
-- **Official Design**: Built with SMU's official colors and logo assets for a professional look.
-- **Modular Structure**: Organized into separate files (colors, fonts, code, etc.) for easy customization.
-- **Professional Fonts**: Uses Calibri for text and Consolas for code to ensure readability.
-- **Code Highlighting**: Powered by `minted` for professional syntax highlighting in over 100 languages.
-- **Flexible Layouts**: Includes easy-to-use multi-column layouts, progress bars, and automatic section pages.
-- **Pre-styled Blocks**: Custom environments for mathematical blocks, examples, and alerts that match the overall theme.
-
-## Build & Installation
+## Compilation & Installation
 
 Besides the LaTeX environment (MiKTeX or TeX Live), the project requires Python 3.x and Pygments for the `minted` package:
 
@@ -34,7 +25,7 @@ cd smu-beamer-template
 pip install Pygments
 ```
 
-### Using Scripts for Compilation (Windows)
+### Using Scripts (Windows)
 
 The project includes build scripts for Windows:
 
@@ -43,26 +34,21 @@ The project includes build scripts for Windows:
 - `clean.bat`: Removes auxiliary build files.
 
 ```bash
-# Compile presentation (outputs to output/ directory)
+# Compile presentation
 .\compile.bat
 
 # Clean build files
 .\clean.bat
 ```
 
+`main.pdf` is under the dictionary `output/`.
+
 ### Manual Compilation
 
 ```bash
-# Step 1: First LaTeX pass
 xelatex -shell-escape -output-directory=output main.tex
-
-# Step 2: Process bibliography
 biber output/main
-
-# Step 3: Second LaTeX pass (update references)
 xelatex -shell-escape -output-directory=output main.tex
-
-# Step 4: Final LaTeX pass (resolve cross-references)
 xelatex -shell-escape -output-directory=output main.tex
 ```
 
@@ -90,47 +76,47 @@ Include the theme in your LaTeX preamble:
 
 \begin{document}
 
-\maketitle % Generates the SMU-styled title page
+\maketitle
 
 \begin{frame}{Introduction}
     Your content goes here.
 \end{frame}
 
-\backmatter % Generates the thank you page
+\backmatter
 
 \end{document}
 ```
 
 ## Project Structure
 
-This theme is designed to be highly customizable. You can modify components, code rendering styles, and font settings in the following files:
+This theme is designed to be highly customizable. You can modify components, code rendering styles, and font settings. The tree of files is:
 
 ```text
 smu-beamer-template/
-├── main.tex             # Main presentation file
-├── ref.bib              # Bibliography
+├── main.tex
+├── ref.bib
 ├── compile.bat          # Windows compilation script
 ├── clean.bat            # Windows cleanup script
-├── .gitignore           # Git ignore rules
+├── .gitignore
 │
-├── smu.sty              # Main theme package file
+├── smu.sty              # Theme package file
 │
-├── smucore/             # Theme component modules
-│   ├── smucolors.def    # Color definitions
-│   ├── smufonts.def     # Font configurations
-│   ├── smucode.def      # Code highlighting setup
+├── smucore/             # Theme modules
+│   ├── smucolors.def    # Color setting
+│   ├── smufonts.def     # Font setting
+│   ├── smucode.def      # Code highlighting
 │   ├── smucommands.def  # Custom commands
-│   ├── smublocks.def    # Block environments
+│   ├── smublocks.def    # Blocks
 │   └── smutemplates.def # Page templates
 │
 ├── fonts/               # Custom fonts (Calibri, Consolas)
 │
 ├── source/              # Theme assets
-│   ├── smu_header_large_left.png  # Large SMU logo
-│   └── smu_header_small_left.png  # Small SMU logo
+│   ├── smu_header_large_left.png
+│   └── smu_header_small_left.png
 │
 └── output/              # Build output (auto-generated)
-    ├── main.pdf         # Final PDF output
+    ├── main.pdf         # Final PDF
     └── ...
 ```
 
@@ -186,46 +172,33 @@ Available: `ccode`, `cppcode`, `pycode`, `javacode`, `jscode`, `tscode`, `gocode
 ```latex
 Use `\pyinline{print("hello")}` for inline Python code.
 Use `\cinline{int x = 0;}` for inline C code.
-Use `\code[python]{value}` for general inline code.
+Use `\smucode{value}` for general inline code.
 ```
 
 ### Block Environments
 
-**Standard Block:**
-
 ```latex
+% Standard Block
 \begin{block}{Title}
     Content
 \end{block}
-```
 
-**Light Box:**
-
-```latex
+% Light Box
 \begin{lightbox}
     Highlighted information
 \end{lightbox}
-```
 
-**Alert Block:**
-
-```latex
+% Alert Block
 \begin{alertblock}{Warning}
     Important notice
 \end{alertblock}
-```
 
-**Theorem Box:**
-
-```latex
+% Theorem Box
 \begin{theorem}[Optional Name]
     Theorem statement
 \end{theorem}
-```
 
-**Tag Block:**
-
-```latex
+% Tag Block
 \begin{tagblock}{Tag Label}
     Content with labeled tag
 \end{tagblock}
@@ -266,138 +239,36 @@ Column widths are customizable using optional parameters (default: 0.48 for two 
 
 ### Text Formatting
 
-**Colored Bold Text:**
-
 ```latex
+% Colored Bold Text
 \textbf{text}      % Blue bold (SMU blue)
 \redbf{text}       % Red bold
 \bluebf{text}      % Muted blue bold
-```
 
-**Highlighted Text:**
-
-```latex
+% Highlighted Text
 \shadedtext{text}                    % Blue background
 \shadedtext[red]{text}               % Custom color background
 \shadedmathbox{x^2 + y^2}            % Math with background
 ```
 
-### Lists
-
-**Itemize:**
-
-```latex
-\begin{itemize}
-    \item First item
-    \item Second item
-        \begin{itemize}
-            \item Nested item
-        \end{itemize}
-\end{itemize}
-```
-
-**Enumerate:**
-
-```latex
-\begin{enumerate}
-    \item First
-    \item Second
-\end{enumerate}
-```
-
-**Description:**
-
-```latex
-\begin{description}
-    \item[API] Application Programming Interface
-    \item[SDK] Software Development Kit
-\end{description}
-```
-
-### Thank You Page
-
-```latex
-\backmatter  % Automatically creates thank you page
-```
-
-## Customization
-
-### Colors
-
-Edit `smucore/smucolors.def`:
-
-```latex
-% Change primary color
-\definecolor{smublue}{HTML}{151C55}
-
-% Add new color
-\definecolor{mycolor}{HTML}{ABCDEF}
-
-% Update beamer color
-\setbeamercolor{title}{fg=mycolor}
-```
-
-### Fonts
-
-Edit `smucore/smufonts.def`:
-
-```latex
-% Change font sizes
-\setbeamerfont{title}{size=\fontsize{24}{26}\selectfont}
-
-% Change font family
-\setmainfont{Arial}  % Requires Arial installed
-```
-
 ### Code Style
 
-Edit `smucore/smucode.def`:
+Edit `smucore/smucode.def` to change highlighting style:
 
 ```latex
-% Change highlighting style
-\usemintedstyle{monokai}  % Dark theme
-\usemintedstyle{xcode}    % Light theme
-
-% Modify code box appearance
-\setminted{
-    bgcolor=white,
-    fontsize=\small,
-    linenos=false
-}
+\usemintedstyle{solarized-light}
 ```
 
-Available styles: `default`, `solarized-light`, `monokai`, `dracula`, `nord`, `xcode`, `vs`, `friendly`, `one-dark`
-
-Full list: https://pygments.org/styles/
+`solarized-light` is set as the default code rendering theme. See the full list of available options: https://pygments.org/styles/
 
 ### Layout
 
-Edit `smucore/smutemplates.def`:
-
-**Disable Section Pages:**
+Edit `smucore/smutemplates.def` to disable section pages:
 
 ```latex
-% Comment out:
 % \AtBeginSection[]{\smusectionpage}
-```
-
-**Modify Progress Bar:**
-
-```latex
-% In footline template, adjust colors or height
-\fill[mycolor] (current page.south west) rectangle ([yshift=5pt]...
-```
-
-**Change Margins:**
-Edit `smu.sty`:
-
-```latex
-\setbeamersize{
-  text margin left=10mm,  % Adjust as needed
-  text margin right=10mm
-}
 ```
 
 ## Disclaimer
 
-This is an unofficial theme and is not affiliated with or endorsed by Singapore Management University (SMU). The project is provided "as-is" without any warranty. Users are responsible for ensuring their presentations comply with SMU's official brand guidelines and academic integrity policies.
+This is an unofficial theme and is not affiliated with or endorsed by Singapore Management University (SMU). The project is provided "as is," and users are responsible for ensuring compliance with SMU’s official brand guidelines and academic integrity policies.
