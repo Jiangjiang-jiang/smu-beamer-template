@@ -1,0 +1,29 @@
+# LaTeX build output directory
+output/
+
+# Old test files
+main_test.*
+
+# Minted cache
+_minted/
+_80D1384B945DB004EEEEC20E678A1F85*
+
+# LaTeX auxiliary files (in case they leak to root)
+*.aux
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# OS specific
+.DS_Store
+Thumbs.db
