@@ -92,7 +92,6 @@
     The SMU Beamer Theme provides a LaTeX beamer template based on SMU's official PowerPoint template, with enhanced features for academic presentations:
     \begin{itemize}
         \item Official SMU branding and colors
-        \item Code highlighting with minted
         \item Custom block components
         \item Flexible layout options
     \end{itemize}
@@ -119,16 +118,6 @@
             \end{itemize}
         }
         \rightcol{
-            \textbf{Code Highlighting:}
-            \begin{itemize}
-                \item Minted integration
-                \item 10+ programming languages
-                \item 49 built-in themes
-                \item Inline code support
-            \end{itemize}
-            
-            \vspace{0.5em}
-            
             \textbf{Custom Blocks:}
             \begin{itemize}
                 \item Standard blocks
@@ -432,176 +421,9 @@
     \end{lightbox}
 \end{frame}
 
-% ================================================================================
-\section{Code Rendering}
-% ================================================================================
-
-\subsection{Code Highlighting}
-
-\begin{frame}[fragile]{Code Highlighting Features}
-    The theme uses \textbf{minted} for professional code highlighting:
-    
-    \vspace{0.5em}
-    
-    \begin{twocolumns}
-        \leftcol{
-            \textbf{Features:}
-            \begin{itemize}
-                \item Line numbers
-                \item Syntax highlighting
-                \item 49 color themes
-                \item 100+ languages
-                \item Inline code support
-            \end{itemize}
-        }
-        \rightcol{
-            \textbf{Supported Languages:}
-            \begin{itemize}
-                \item Python, C, C++, Java
-                \item JavaScript, TypeScript
-                \item Go, Rust, Shell
-                \item SQL, R, MATLAB
-                \item And many more!
-            \end{itemize}
-        }
-    \end{twocolumns}
-    
-    \vspace{0.5em}
-    
-    \begin{alertblock}{Important}
-        Always use \texttt{[fragile]} option when frames contain code blocks!
-    \end{alertblock}
-\end{frame}
-
-\begin{frame}[fragile]{Python: Fibonacci Sequence}
-\begin{minted}{python}
-def fibonacci(n):
-    """Calculate the nth Fibonacci number using recursion"""
-    if n <= 1:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
-
-def fibonacci_iterative(n):
-    """Calculate Fibonacci iteratively (more efficient)"""
-    a, b = 0, 1
-    for _ in range(n):
-        a, b = b, a + b
-    return a
-
-# Test the functions
-for i in range(10):
-    result = fibonacci_iterative(i)
-    print("F(%d) = %d" % (i, result))
-\end{minted}
-
-Inline Python: \pyinline{lambda x: x**2}
-\end{frame}
-
-\begin{frame}[fragile]{C++: Template Function}
-\begin{minted}{cpp}
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-template<typename T>
-T findMax(const std::vector<T>& arr) {
-    if (arr.empty()) {
-        throw std::runtime_error("Empty vector");
-    }
-    return *std::max_element(arr.begin(), arr.end());
-}
-
-int main() {
-    std::vector<int> numbers = {3, 7, 2, 9, 1, 5};
-    std::cout << "Maximum: " << findMax(numbers) << std::endl;
-    
-    std::vector<double> values = {3.14, 2.71, 1.41};
-    std::cout << "Maximum: " << findMax(values) << std::endl;
-    
-    return 0;
-}
-\end{minted}
-\end{frame}
-
-\begin{frame}[fragile]{SQL and Shell Scripts}
-    \begin{columns}[T]
-        \begin{column}{0.48\textwidth}
-            \textbf{SQL Query}
-\begin{minted}{sql}
-SELECT 
-    s.student_name,
-    AVG(g.score) as avg_score,
-    COUNT(*) as num_courses
-FROM students s
-JOIN grades g 
-    ON s.id = g.student_id
-WHERE g.score >= 80
-GROUP BY s.id, s.student_name
-HAVING COUNT(*) >= 3
-ORDER BY avg_score DESC
-LIMIT 10;
-\end{minted}
-        \end{column}
-        
-        \begin{column}{0.48\textwidth}
-            \textbf{Bash Script}
-\begin{minted}{bash}
-#!/bin/bash
-
-BACKUP_DIR="/backup"
-DATE=$(date +%Y%m%d)
-SOURCE="/data"
-
-# Create backup
-echo "Starting backup..."
-tar -czf \
-  "$BACKUP_DIR/bk_$DATE.tar.gz" \
-  "$SOURCE"
-
-if [ $? -eq 0 ]; then
-    echo "Backup completed"
-else
-    echo "Backup failed!"
-    exit 1
-fi
-\end{minted}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Inline Code Examples}
-    \textbf{Inline code for different languages:}
-    
-    \begin{itemize}
-        \item Python: \pyinline{def hello(): return "world"}
-        \item C: \cinline{int *ptr = malloc(sizeof(int));}
-        \item Java: \javainline{List<String> names = new ArrayList<>();}
-        \item JavaScript: \jsinline{const arr = [1, 2, 3].map(x => x * 2);}
-    \end{itemize}
-    
-    \vspace{1em}
-    
-    \begin{block}{Generic Inline Code}
-        You can also use \smucode{\textbackslash code[language]\{code\}} for any language:
-        \begin{itemize}
-            \item Generic: Use \smucode{\textbackslash code[C]{printf("Hello")}} for output
-            \item Commands: Run \smucode{git commit -m "message"}
-            \item Paths: See file \smucode{/etc/config.conf}
-        \end{itemize}
-    \end{block}
-\end{frame}
-
 \begin{frame}{Quick Reference}
     \begin{tagblock}{Getting Started}
         Load the theme: \smucode{\textbackslash usepackage\{smu\}}
-    \end{tagblock}
-    
-    \vspace{0.3em}
-    
-    \begin{tagblock}{Code Highlighting}
-        For code blocks: \smucode{\textbackslash begin\{frame\}[fragile]}
-        
-        Use environments: \smucode{pycode}, \smucode{cppcode}, \smucode{jscode}, etc.
     \end{tagblock}
     
     \vspace{0.3em}
@@ -627,7 +449,6 @@ fi
     \begin{description}
         \item[\bluebf{Colors}] Edit \texttt{smucore/smucolors.def}
         \item[\bluebf{Fonts}] Edit \texttt{smucore/smufonts.def}
-        \item[\bluebf{Code Style}] Edit \texttt{smucore/smucode.def}
         \item[\bluebf{Commands}] Edit \texttt{smucore/smucommands.def}
         \item[\bluebf{Blocks}] Edit \texttt{smucore/smublocks.def}
         \item[\bluebf{Templates}] Edit \texttt{smucore/smutemplates.def}
@@ -653,9 +474,7 @@ fi
     
     \begin{tagblock}{External Resources}
         \begin{itemize}
-            \item Minted: \url{https://ctan.org/pkg/minted}
             \item Beamer: \url{https://ctan.org/pkg/beamer}
-            \item Pygments Styles: \url{https://pygments.org/styles/}
         \end{itemize}
     \end{tagblock}
 \end{frame}

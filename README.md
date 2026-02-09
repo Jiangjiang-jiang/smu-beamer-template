@@ -1,13 +1,19 @@
-# SMU Beamer Theme
+# SMU Beamer Theme (Light)
+
+> **Light version**: 
+>
+> - The `minted` for code highlighting has been removed. 
+> - *No Python/Pygments required, faster compilation*.
+> - For code blocks highlighting support, use the [`main`](https://github.com/Jiangjiang-jiang/smu-beamer-template/tree/main) branch.
 
 This is an unofficial Beamer presentation template for Singapore Management University (SMU).
 It is designed for postgraduate academic presentations, including seminars, defenses, and talks.
 
-- **Author:** qsang 
+- **Author:** qsang
 
 - **Contact:** qsangxin@gmail.com
 
-Screenshots are follows and here is a full [demo](./main.pdf).
+Screenshots are follows and here is a full [demo](./main.pdf) (without code rendering).
 
 |           Title Page            |           Key Features           |
 | :-----------------------------: | :------------------------------: |
@@ -17,12 +23,11 @@ Screenshots are follows and here is a full [demo](./main.pdf).
 
 ## Compilation & Installation
 
-Besides the LaTeX environment (MiKTeX or TeX Live), the project requires Python 3.x and Pygments for the `minted` package:
+This branch only requires a LaTeX distribution (MiKTeX or TeX Live).
 
 ```bash
-git clone https://github.com/Jiangjiang-jiang/smu-beamer-template.git
+git clone -b feature-smu-beamer-template-light https://github.com/Jiangjiang-jiang/smu-beamer-template.git
 cd smu-beamer-template
-pip install Pygments
 ```
 
 ### Using Scripts
@@ -44,13 +49,11 @@ The project includes build scripts under the `scripts/` directory:
 ### Manual Compilation
 
 ```bash
-xelatex -shell-escape -output-directory=output main.tex
+xelatex -output-directory=output main.tex
 biber output/main
-xelatex -shell-escape -output-directory=output main.tex
-xelatex -shell-escape -output-directory=output main.tex
+xelatex -output-directory=output main.tex
+xelatex -output-directory=output main.tex
 ```
-
-**Note:** The `-shell-escape` flag is required for minted code highlighting.
 
 ### Overleaf
 
@@ -87,7 +90,7 @@ Include the theme in your LaTeX preamble:
 
 ## Project Structure
 
-This theme is designed to be highly customizable. You can modify components, code rendering styles, and font settings. The tree of files is:
+This theme is designed to be highly customizable. The tree of files is:
 
 ```text
 smu-beamer-template/
@@ -96,17 +99,16 @@ smu-beamer-template/
 ├── .gitignore
 │
 ├── scripts/             # Build scripts
-│   ├── compile.bat      
-│   ├── compile.sh       
-│   ├── clean.bat        
-│   └── clean.sh         
+│   ├── compile.bat
+│   ├── compile.sh
+│   ├── clean.bat
+│   └── clean.sh
 │
 ├── smu.sty              # Theme package file
 │
 ├── smucore/             # Theme modules
 │   ├── smucolors.def    # Color setting
 │   ├── smufonts.def     # Font setting
-│   ├── smucode.def      # Code highlighting
 │   ├── smucommands.def  # Custom commands
 │   ├── smublocks.def    # Blocks
 │   └── smutemplates.def # Page templates
@@ -138,43 +140,6 @@ Section pages are automatically generated. To disable section pages, do not use 
 
 ```latex
 \AtBeginSection[]{\smusectionpage}
-```
-
-### Code Highlighting
-
-Frames containing code must use the `[fragile]` option:
-
-```latex
-\begin{frame}[fragile]{Code Example}
-\begin{minted}{python}
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
-\end{minted}
-\end{frame}
-```
-
-**Convenience Environments:**
-
-```latex
-\begin{pycode}
-    Python code here
-\end{pycode}
-
-\begin{cppcode}
-    C++ code here
-\end{cppcode}
-```
-
-Available: `ccode`, `cppcode`, `pycode`, `javacode`, `jscode`, `tscode`, `gocode`, `rustcode`, `shellcode`, `sqlcode`
-
-**Inline Code:**
-
-```latex
-Use `\pyinline{print("hello")}` for inline Python code.
-Use `\cinline{int x = 0;}` for inline C code.
-Use `\smucode{value}` for general inline code.
 ```
 
 ### Block Environments
@@ -247,22 +212,15 @@ Column widths are customizable using optional parameters (default: 0.48 for two 
 \redbf{text}       % Red bold
 \bluebf{text}      % Muted blue bold
 
+% Inline Code Style (no syntax highlighting)
+\smucode{value}    % Monospace styled text
+
 % Highlighted Text
 \shadedtext{text}                    % Blue background
 \shadedtext[red]{text}               % Custom color background
 \shadedmathbox{x^2 + y^2}            % Math with background
 ```
 
-### Code Style
-
-Edit `smucore/smucode.def` to change highlighting style:
-
-```latex
-\usemintedstyle{solarized-light}
-```
-
-`solarized-light` is set as the default code rendering theme. See the full list of available options: https://pygments.org/styles/
-
 ## Disclaimer
 
-This is an unofficial theme and is not affiliated with or endorsed by Singapore Management University (SMU). The project is provided "as is," and users are responsible for ensuring compliance with SMU’s official brand guidelines and academic integrity policies.
+This is an unofficial theme and is not affiliated with or endorsed by Singapore Management University (SMU). The project is provided "as is," and users are responsible for ensuring compliance with SMU's official brand guidelines and academic integrity policies.
