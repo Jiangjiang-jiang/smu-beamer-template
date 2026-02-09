@@ -25,20 +25,18 @@ cd smu-beamer-template
 pip install Pygments
 ```
 
-### Using Scripts (Windows)
+### Using Scripts
 
-The project includes build scripts for Windows:
-
-- `compile.bat`: Executes the full compilation pipeline (XeLaTeX → Biber → XeLaTeX).
-
-- `clean.bat`: Removes auxiliary build files.
+The project includes build scripts under the `scripts/` directory:
 
 ```bash
-# Compile presentation
-.\compile.bat
+# Windows
+.\scripts\compile.bat
+.\scripts\clean.bat
 
-# Clean build files
-.\clean.bat
+# Linux / macOS
+./scripts/compile.sh
+./scripts/clean.sh
 ```
 
 `main.pdf` is under the dictionary `output/`.
@@ -95,9 +93,13 @@ This theme is designed to be highly customizable. You can modify components, cod
 smu-beamer-template/
 ├── main.tex
 ├── ref.bib
-├── compile.bat          # Windows compilation script
-├── clean.bat            # Windows cleanup script
 ├── .gitignore
+│
+├── scripts/             # Build scripts
+│   ├── compile.bat      
+│   ├── compile.sh       
+│   ├── clean.bat        
+│   └── clean.sh         
 │
 ├── smu.sty              # Theme package file
 │
@@ -132,10 +134,10 @@ smu-beamer-template/
 \end{frame}
 ```
 
-Section pages are automatically generated. To disable this feature, comment out the following line in your preamble or modify `smutemplates.def`:
+Section pages are automatically generated. To disable section pages, do not use `\section{}` command in your slides or comment out the following line in `smucore/smutemplates.def`:
 
 ```latex
-% \AtBeginSection[]{\smusectionpage}
+\AtBeginSection[]{\smusectionpage}
 ```
 
 ### Code Highlighting
@@ -260,14 +262,6 @@ Edit `smucore/smucode.def` to change highlighting style:
 ```
 
 `solarized-light` is set as the default code rendering theme. See the full list of available options: https://pygments.org/styles/
-
-### Layout
-
-Edit `smucore/smutemplates.def` to disable section pages:
-
-```latex
-% \AtBeginSection[]{\smusectionpage}
-```
 
 ## Disclaimer
 
